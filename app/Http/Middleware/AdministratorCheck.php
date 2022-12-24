@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\Role;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class AuthGates
+class AdministratorCheck
 {
     /**
      * Handle an incoming request.
@@ -19,19 +19,15 @@ class AuthGates
     public function handle(Request $request, Closure $next)
     {
         $user = auth()->user();
+        $roles = Role::where('id', 1)->pluck('id')->toArray();
 
         if (!$user) {
             return $next($request);
         }
 
-        $roles = Role::all();
-
-        foreach ($roles as $role) {
-            foreach ($role as $userRole) {
-                $userRoleArray[$userRole->title][] = $role->id;
-                dd($userRoleArray);
-            }
-        }
+        Gate::define('isAdmin', function($user) use ($roles) {
+            return count(array_intersect($user->roles->pluck('id')->toArray(), $roles)) > 0;
+         });
 
         return $next($request);
     }
