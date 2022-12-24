@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MassDestroyCompanyRequest extends FormRequest
@@ -13,7 +14,7 @@ class MassDestroyCompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Gate::allows('isAdmin');
     }
 
     /**
@@ -24,7 +25,8 @@ class MassDestroyCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ids'   => 'required|array',
+            'ids.*' => 'exists:companies,id',
         ];
     }
 }

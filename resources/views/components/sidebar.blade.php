@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        <span class="brand-text font-weight-light">{{ trim(config('app.name')) }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -41,7 +41,7 @@
 
                                 </i>
                                 <p>
-                                    Users
+                                    Administrators
                                 </p>
                             </a>
                         </li>
@@ -72,8 +72,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.companies.data.index') }}"
-                                class="nav-link {{ request()->is('admin/companies/data') || request()->is('admin/companies/data/*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.employees.index') }}"
+                                class="nav-link {{ request()->is('admin/employees') || request()->is('admin/employees/*') ? 'active' : '' }}">
                                 <i class="fa-fw nav-icon fas fa-user-plus">
 
                                 </i>

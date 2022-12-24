@@ -11,7 +11,7 @@ class Employee extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $table = 'company';
+    public $table = 'employees';
 
     protected $dates = [
         'created_at',
@@ -23,6 +23,8 @@ class Employee extends Model
         'company_id',
         'first_name',
         'last_name',
+        'email',
+        'phone',
         'created_at',
         'updated_at',
         'deleted_at',

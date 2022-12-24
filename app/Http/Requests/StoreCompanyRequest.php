@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCompanyRequest extends FormRequest
@@ -13,7 +14,7 @@ class StoreCompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Gate::allows('isAdmin');
     }
 
     /**
@@ -24,7 +25,31 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'company_name' => [
+                'string',
+                'required',
+            ],
+            'company_email' => [
+                'string',
+                'nullable',
+            ],
+            'company_logo' => [
+                'string',
+                'nullable',
+            ],
+            'company_website' => [
+                'string',
+                'nullable',
+            ],
+            'phone' => [
+                'nullable',
+                'regex:/^[6-9][0-9]{9}$/',
+                'max:13',
+            ],
+            'email' => [
+                'nullable',
+                'email'
+            ]
         ];
     }
 }

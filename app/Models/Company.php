@@ -27,4 +27,9 @@ class Company extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function companydata()
+    {
+        return $this->hasMany(CompanyData::class);
+    }
 }

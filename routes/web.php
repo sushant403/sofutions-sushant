@@ -36,14 +36,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', Ad
     Route::delete('/users/destroy', [UsersController::class, 'massDestroy'])->name('users.massDestroy');
     Route::resource('/users', UsersController::class);
 
-    // CRUD for Companies and Data
-    Route::group(['prefix' => 'companies', 'as' => 'companies.'], function () {
-        Route::delete('/destroy', [CompanyController::class, 'massDestroy'])->name('companies.massDestroy');
-        Route::resource('/', CompanyController::class);
-
-        Route::delete('/data/destroy', [CompanyDataController::class, 'massDestroy'])->name('company.data.massDestroy');
-        Route::resource('/data', CompanyDataController::class);
-    });
+    // CRUD for Companies
+    Route::delete('/destroy', [CompanyController::class, 'massDestroy'])->name('companies.massDestroy');
+    Route::resource('/companies', CompanyController::class);
 
     // CRUD for Employees
     Route::delete('/employees/destroy', [EmployeeController::class, 'massDestroy'])->name('employees.massDestroy');

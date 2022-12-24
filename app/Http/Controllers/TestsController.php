@@ -11,6 +11,8 @@ class TestsController extends Controller
     public function testArea($data = 'empty', Request $request)
     {
 
+        //  dd(Gate::allows('isAdmin'));
+
         $user = auth()->user();
         $data = Gate::define('isAdmin', function($user) {
             return $user->roles->pluck('title')[0] == 'Admin';
