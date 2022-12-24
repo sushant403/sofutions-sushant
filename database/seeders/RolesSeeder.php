@@ -19,10 +19,14 @@ class RolesSeeder extends Seeder
             [
                 'id'    => 1,
                 'title' => 'Admin',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
             ],
             [
                 'id'    => 2,
                 'title' => 'Employee',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
             ],
         ];
 
