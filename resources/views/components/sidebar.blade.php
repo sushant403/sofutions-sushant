@@ -48,8 +48,8 @@
                     </ul>
                 </li>
                 <li
-                    class="nav-item has-treeview {{ request()->is('admin/companies*') ? 'menu-open' : '' }} {{ request()->is('admin/companies/data*') ? 'menu-open' : '' }}">
-                    <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/companies*') ? 'active' : '' }} {{ request()->is('admin/companies/data*') ? 'active' : '' }}"
+                    class="nav-item has-treeview {{ request()->is('admin/companies*') ? 'menu-open' : '' }} {{ request()->is('admin/employees*') ? 'menu-open' : '' }}">
+                    <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/companies*') ? 'active' : '' }} {{ request()->is('admin/employees*') ? 'active' : '' }}"
                         href="#">
                         <i class="fa-fw nav-icon fas fa-phone-square">
 

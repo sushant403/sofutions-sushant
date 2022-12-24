@@ -57,7 +57,7 @@
                                     {{ $company->company_name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $company->company_logo ?? '' }}
+                                    <img src="/storage/{{ $company->company_logo }}" width="200">
                                 </td>
                                 <td>
                                     {{ $company->company_website ?? '' }}

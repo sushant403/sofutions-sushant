@@ -26,7 +26,8 @@
             </div>
             <div class="form-group">
                 <label for="company_logo">Logo</label>
-                <input class="form-control {{ $errors->has('company_logo') ? 'is-invalid' : '' }}" type="file" name="company_logo" id="company_logo" value="{{ old('company_logo', $company->company_logo) }}">
+                <p class="mt-2">@if(!$company->company_logo == null)<img src="/storage/{{ $company->company_logo }}" width="250">@endif</p>
+                <input class="form-control {{ $errors->has('company_logo') ? 'is-invalid' : '' }}" type="file" name="company_logo" id="company_logo" value="">
                 @if($errors->has('company_logo'))
                     <span class="text-danger">{{ $errors->first('company_logo') }}</span>
                 @endif
@@ -44,14 +45,14 @@
             <hr>
             <div class="form-group">
                 <label for="email">Email 2</label>
-                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email', $company->companydata->first()->email) }}">
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email', $company->companydata->first()->email ?? '') }}">
                 @if($errors->has('email'))
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text" name="phone" id="phone" value="{{ old('phone', $company->companydata->first()->phone) }}">
+                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text" name="phone" id="phone" value="{{ old('phone', $company->companydata->first()->phone ?? '') }}">
                 @if($errors->has('phone'))
                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                 @endif

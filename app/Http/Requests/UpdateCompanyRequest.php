@@ -34,8 +34,9 @@ class UpdateCompanyRequest extends FormRequest
                 'nullable',
             ],
             'company_logo' => [
-                'string',
                 'nullable',
+                'image',
+                'dimensions:min_width=100,min_height=100'
             ],
             'company_website' => [
                 'string',

@@ -36,8 +36,15 @@ class CompanyController extends Controller
         $company = Company::create($request->all());
         $companyID = $company->id;
 
-        // dd($companyID);
+        try {
+            if ($request->company_logo != null) {
+                $this->uploadLogo($request, $company);
+            }
+        } catch (\Exception $e) {
+            // continue the flow by sending $e error message to the developer. That is what I normally do.
+        }
 
+        // dd($companyID);
         if (!$request->isNotFilled('email') || !$request->isNotFilled('phone')) {
             $this->addCompanyData($request, $companyID);
         }
@@ -55,6 +62,14 @@ class CompanyController extends Controller
     public function update(UpdateCompanyRequest $request, Company $company)
     {
         $company->update($request->all());
+
+        try {
+            if ($request->company_logo != null) {
+                $this->uploadLogo($request, $company);
+            }
+        } catch (\Exception $e) {
+            // continue the flow by sending $e error message to the developer. That is what I normally do.
+        }
 
         if (!$request->isNotFilled('email') || !$request->isNotFilled('phone')) {
             $this->updateCompanyData($request, $company);
@@ -86,6 +101,20 @@ class CompanyController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
+
+    public function uploadLogo($request, $company)
+    {
+
+        if($request->file('company_logo')){
+            $file= $request->file('company_logo');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> storeAs('public', $filename);
+            $company['company_logo'] = $filename;
+        }
+        $company->save();
+    }
+
+
     public function addCompanyData($request, $companyID)
     {
         $company = new CompanyData();
@@ -105,7 +134,7 @@ class CompanyController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email
             ]);
-        } else{
+        } else {
             $this->addCompanyData($request, $company->id);
         }
     }

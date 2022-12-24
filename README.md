@@ -24,6 +24,9 @@ They have been implementing strategical, well-designed, optimized and client-cen
     And run the console-command in the same directory:
     - php artisan migrate --seed
 
+3.1. Run the following command for storage link to public (logo):
+    - php artisan storage:link
+
 4. Follow the artisan serve link, generally (http://127.0.0.1:8000)
 5. It will be redirected to '/login' automatically.
 6. Use credentials as provided: 
@@ -57,4 +60,8 @@ Full Stack Web Designer and Developer
 
 [Website - sushantp.com.np](https://sushantp.com.np)
 
-Thank You# sofutions-sushant
+Thank You
+
+---
+
+# sofutions
